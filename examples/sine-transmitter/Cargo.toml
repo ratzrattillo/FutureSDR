@@ -1,0 +1,8 @@
+[package]
+name = "sine-transmitter"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0"
+futuresdr = { path = "../..", features=["bladerf"] } #  "soapy"
