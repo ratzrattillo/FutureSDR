@@ -1,0 +1,13 @@
+[package]
+name = "fm-transmitter"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4", features = ["derive"] }
+futuresdr = { path = "../..", features=["bladerf", "audio"] }
+# futuresdr = { path = "../..", features=["rtlsdr", "audio"] }
+# futuresdr = { version = "0.0.38", features=["soapy", "audio"] }

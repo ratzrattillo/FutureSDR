@@ -25,6 +25,7 @@ members = [".", "crates/futuredsp", "crates/macros", "crates/types"]
 default = ["tracing_max_level_debug", "tracing_release_max_level_info"]
 aaronia_http = ["seify/aaronia_http"]
 audio = ["dep:cpal", "dep:hound", "dep:rodio"]
+bladerf = ["seify/bladerf"]
 burn = ["dep:burn"]
 flow_scheduler = []
 hackrf = ["seify/hackrfone"]
@@ -81,7 +82,8 @@ num-integer = "0.1"
 num_cpus = "1.17"
 once_cell = "1.21"
 rustfft = "6.4"
-seify = { version = "0.18", default-features = false, optional = true }
+# seify = { version = "0.18", default-features = false, optional = true }
+seify = { git = "https://github.com/ratzrattillo/seify", branch="bladerf1", default-features = false, optional = true }
 slab = "0.4"
 spin = "0.10"
 serde = { version = "1.0", features = ["derive"] }

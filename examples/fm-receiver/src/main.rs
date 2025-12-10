@@ -53,6 +53,10 @@ struct Args {
 }
 
 fn main() -> Result<()> {
+	// cargo run --release -- --frequency=107700000 --gain=45.0 --rate=5000000 --args "driver=bladerf"
+    // Why am i at 107.7 when i enter 98.5?: When the sample rate is unsupported, this happens...
+    // cargo run --release -- --frequency=107700000 --gain=30.0 --rate=1800000 --args "driver=rtlsdr"
+
     futuresdr::runtime::init();
     let args = Args::parse();
     println!("Configuration {args:?}");

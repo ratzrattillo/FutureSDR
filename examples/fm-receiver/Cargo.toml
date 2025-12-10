@@ -8,4 +8,4 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0"
 clap = { version = "4", features = ["derive"] }
-futuresdr = { path = "../..", features=["soapy", "audio", "rtlsdr"] }
+futuresdr = { path = "../..", features=["bladerf", "audio"] } # "soapy", "rtlsdr"
