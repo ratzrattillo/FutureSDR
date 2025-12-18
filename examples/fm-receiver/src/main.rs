@@ -28,15 +28,15 @@ use futuresdr::runtime::Runtime;
 #[derive(Parser, Debug)]
 struct Args {
     /// Gain to apply to the seify source
-    #[clap(short, long, default_value_t = 30.0)]
+    #[clap(short, long, default_value_t = 45.0)]
     gain: f64,
 
     /// Center frequency
-    #[clap(short, long, default_value_t = 100_000_000.0)]
+    #[clap(short, long, default_value_t = 105_900_000.0)]
     frequency: f64,
 
     /// Sample rate
-    #[clap(short, long, default_value_t = 1000000.0)]
+    #[clap(short, long, default_value_t = 5000000.0)]
     rate: f64,
 
     /// Seify args
@@ -54,7 +54,6 @@ struct Args {
 
 fn main() -> Result<()> {
 	// cargo run --release -- --frequency=107700000 --gain=45.0 --rate=5000000 --args "driver=bladerf"
-    // Why am i at 107.7 when i enter 98.5?: When the sample rate is unsupported, this happens...
     // cargo run --release -- --frequency=107700000 --gain=30.0 --rate=1800000 --args "driver=rtlsdr"
 
     futuresdr::runtime::init();
