@@ -11,11 +11,11 @@ readme = "README.md"
 description = "An Experimental Async SDR Runtime for Heterogeneous Architectures."
 keywords = ["sdr", "radio", "runtime", "async", "acceleration"]
 categories = [
-  "asynchronous",
-  "concurrency",
-  "hardware-support",
-  "science",
-  "wasm",
+    "asynchronous",
+    "concurrency",
+    "hardware-support",
+    "science",
+    "wasm",
 ]
 
 [workspace]
@@ -27,7 +27,7 @@ aaronia_http = ["seify/aaronia_http"]
 audio = ["dep:cpal", "dep:hound", "dep:rodio"]
 bladerf = ["seify/bladerf"]
 burn = ["dep:burn"]
-flow_scheduler = []
+flow_scheduler = ["dep:spin", "dep:concurrent-queue"]
 hackrf = ["seify/hackrfone"]
 rtlsdr = ["seify/rtlsdr"]
 seify = ["dep:seify", "futuresdr-types/seify"]
@@ -73,7 +73,6 @@ config = "0.15"
 dirs = "6.0"
 dyn-clone = "1.0"
 futures = "0.3"
-futures-lite = "2.6"
 futuredsp = { path = "crates/futuredsp", version = "0.0.9-dev" }
 futuresdr-macros = { path = "crates/macros", version = "0.0.9-dev" }
 futuresdr-types = { path = "crates/types", version = "0.0.15-dev" }
@@ -86,7 +85,7 @@ rustfft = "6.4"
 # seify = { path = "../seify", default-features = false, optional = true }
 seify = { git = "https://github.com/ratzrattillo/seify", branch="bladerf1", default-features = false, optional = true }
 slab = "0.4"
-spin = "0.10"
+spin = { version = "0.10", optional = true }
 serde = { version = "1.0", features = ["derive"] }
 thiserror = "2.0"
 tracing = { version = "0.1", features = ["log"] }
@@ -97,8 +96,8 @@ wgpu = { version = "26.0", optional = true }
 cpal = { version = "0.16", optional = true, features = ['wasm-bindgen'] }
 getrandom = { version = "0.3", features = ["wasm_js"] }
 gloo-net = { version = "0.6", default-features = false, features = [
-  "websocket",
-  "json",
+    "websocket",
+    "json",
 ] }
 gloo-timers = { version = "0.3", features = ["futures"] }
 js-sys = "0.3"
@@ -119,14 +118,14 @@ async-task = "4.7"
 async-tungstenite = "0.32"
 axum = "0.8"
 blocking = "1.6"
-concurrent-queue = "2.5"
+concurrent-queue = { version = "2.5", optional = true }
 core_affinity = "0.8"
 cpal = { version = "0.16", optional = true }
 hound = { version = "3.5", optional = true }
 libc = "0.2"
 ouroboros = { version = "0.18", optional = true }
 rodio = { version = "0.21", default-features = false, features = [
-  "symphonia-all",
+    "symphonia-all",
 ], optional = true }
 tokio = { version = "1", features = ["rt"] }
 tower-http = { version = "0.6", features = ["add-extension", "cors", "fs"] }
@@ -144,33 +143,31 @@ tracing-android = "0.2"
 [target.'cfg(target_arch = "wasm32")'.dependencies.web-sys]
 version = "0.3"
 features = [
-  'Document',
-  'Element',
-  'HtmlElement',
-  'Navigator',
-  'Node',
-  'Usb',
-  'UsbConfiguration',
-  'UsbControlTransferParameters',
-  'UsbDevice',
-  'UsbDeviceFilter',
-  'UsbDeviceRequestOptions',
-  'UsbInTransferResult',
-  'UsbOutTransferResult',
-  'UsbRecipient',
-  'UsbRequestType',
-  'Window',
-  'WorkerGlobalScope',
-  'WorkerNavigator',
+    'Document',
+    'Element',
+    'HtmlElement',
+    'Navigator',
+    'Node',
+    'Usb',
+    'UsbConfiguration',
+    'UsbControlTransferParameters',
+    'UsbDevice',
+    'UsbDeviceFilter',
+    'UsbDeviceRequestOptions',
+    'UsbInTransferResult',
+    'UsbOutTransferResult',
+    'UsbRecipient',
+    'UsbRequestType',
+    'Window',
+    'WorkerGlobalScope',
+    'WorkerNavigator',
 ]
 
 [build-dependencies]
 rustc_version = "0.4"
 
 [dev-dependencies]
-async-channel = "2.5"
 criterion = { version = "0.7", features = ["html_reports"] }
-easy-parallel = "3.3"
 float-cmp = "0.10"
 rand = "0.9"
 vulkano-shaders = "0.35"
